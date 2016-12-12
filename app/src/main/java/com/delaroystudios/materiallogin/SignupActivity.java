@@ -102,9 +102,14 @@ public class SignupActivity extends AppCompatActivity {
 
         boolean isInserted = myDb.insertData(name,address,email,mobile,password);
         if(isInserted == true)
-            Toast.makeText(SignupActivity.this,"user added",Toast.LENGTH_LONG).show();
+            Toast.makeText(SignupActivity.this,"user aded",Toast.LENGTH_LONG).show();
         else
-            Toast.makeText(SignupActivity.this,"user not added",Toast.LENGTH_LONG).show();
+            Toast.makeText(SignupActivity.this,"Data not Inserted",Toast.LENGTH_LONG).show();
+
+        User user = new User(name,address,email,mobile,password);
+
+
+
 
 
     }

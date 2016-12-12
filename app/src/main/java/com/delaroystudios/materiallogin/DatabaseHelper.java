@@ -47,6 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+    public Cursor login(String email , String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME +"WHERE email ="+email+"and password ="+password + TABLE_NAME, null);
+        return res;
+
+    }
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();

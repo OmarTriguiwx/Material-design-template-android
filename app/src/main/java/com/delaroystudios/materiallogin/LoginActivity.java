@@ -1,6 +1,7 @@
 package com.delaroystudios.materiallogin;
 
 import android.app.ProgressDialog;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +19,7 @@ import butterknife.Bind;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    DatabaseHelper myDb;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
@@ -29,11 +31,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        myDb = new DatabaseHelper(this);
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
                 login();
             }
         });
@@ -71,10 +75,18 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+       /* Cursor result = myDb.login(email,password);
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("Id :"+ result.getString(0));
+
+
+        Toast.makeText(LoginActivity.this,buffer.toString(),Toast.LENGTH_LONG).show();*/
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
+                        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                        startActivity(intent);
                         // On complete call either onLoginSuccess or onLoginFailed
                         onLoginSuccess();
                         // onLoginFailed();
